@@ -1,20 +1,48 @@
-# threepojs
-
-Transform your strings XLSX file into JavaScript objects!
+# threepo
 
 <img src = https://raw.githubusercontent.com/FrankKair/threepojs/master/assets/threepo-logo.png width="25%" height="25%"/>
 
-If you have a XLSX file with all the localized strings of your project, you can use **threepojs** to parse the XLSX file into a JavaScript object containing all the strings.
+Transform a localization spreadsheet (XLSX or CSV) into JSON.
 
-<img src = https://raw.githubusercontent.com/FrankKair/threepojs/master/assets/xlsx_img.png width="45%" height="45%"/>
+Expects a header row with a `key` column and one column per locale:
 
-<img src = https://raw.githubusercontent.com/FrankKair/threepojs/master/assets/js_obj_img.png width="20%" height="20%"/>
+| key      | en       | pt         | sv    |
+|----------|----------|------------|-------|
+| hello    | hello    | olá        | hej   |
+| computer | computer | computador | dator |
 
-# Usage
+Output:
 
+```json
+{
+  "hello":      {"en": "hello",    "pt": "olá",        "sv": "hej"},
+  "computador": {"en": "computer", "pt": "computador", "sv": "dator"}
+}
+```
 
-    $ npm install -g threepojs
+Dot-separated keys produce nested objects: `home.title` becomes `{ "home": { "title": { ... } } }`.
 
-Example:
+## Install
 
-    $ threepojs ~/path/directory/my_strings.xlsx
+```
+go install github.com/FrankKair/threepo@latest
+```
+
+Or build from source:
+
+```
+make build
+```
+
+## Usage
+
+```
+threepo <file.xlsx|file.csv>
+```
+
+```
+threepo strings.xlsx
+threepo strings.csv
+threepo strings.xlsx | jq .key   # pipe to jq
+threepo strings.xlsx > out.json  # write to file
+```
