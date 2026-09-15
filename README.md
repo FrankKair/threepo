@@ -1,5 +1,7 @@
 # threepo
 
+[![CI](https://github.com/FrankKair/threepo/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/FrankKair/threepo/actions/workflows/ci.yml)
+
 <img src = https://raw.githubusercontent.com/FrankKair/threepojs/master/assets/threepo-logo.png width="25%" height="25%"/>
 
 Transform a localization spreadsheet (XLSX or CSV) into JSON.
